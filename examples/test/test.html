@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<link rel="stylesheet" href="http://libs.ijianghe.cn/js/layer/layer.css">
+	<style>
+		html, body {
+			padding: 0;
+			margin: 0;
+		}
+
+		.parent {
+			width: 100%;
+			height: 100%;
+		}
+
+		.chirdren {
+			list-style: none;
+			margin: 0;
+			padding: 0;
+		}
+
+		.chirdren li {
+			width: 100%;
+			height: 1.5rem;
+			border-bottom: 1px solid #000;
+			font-size: 0.35rem;
+			text-align: center;
+			line-height: 1.5rem;
+		}
+
+	</style>
+</head>
+<body>
+<div class="parent">
+	<ul class="chirdren">
+		<li>提示框</li>
+		<li>toast</li>
+		<li>询问框</li>
+		<li>底部对话框</li>
+		<li>底部提示</li>
+		<li>自定义标题风格</li>
+		<li>页面层</li>
+		<li>loading层</li>
+		<li>loading带文字</li>
+	</ul>
+</div>
+
+</body>
+<script src="http://libs.ijianghe.cn/js/autoViewPort/autoViewPort.js" type="text/javascript"></script>
+<script src="http://libs.ijianghe.cn/js/layer/layer.js" type="text/javascript"></script>
+<script>
+
+    AutoViewPort();
+
+    var list = document.querySelectorAll('.chirdren li')
+
+    //提示框
+    list[0].addEventListener('click', function (e) {
+        layer.open({
+            content: 'hello layer',
+            btn: '我知道了'
+        });
+    });
+
+    //toast
+    list[1].addEventListener('click', function (e) {
+        layer.open({
+            content: 'hello layer',
+            skin: 'msg',
+            time: 2 //2秒后自动关闭
+        });
+    });
+
+    //询问框
+    list[2].addEventListener('click', function (e) {
+        layer.open({
+            content: '您确定要刷新一下本页面吗？',
+            btn: ['确定', '取消'],
+            yes: function (index) {
+                layer.close(index);
+            },
+            no: function () {
+                console.log('取消');
+            }
+        });
+    });
+
+    //底部对话框
+    list[3].addEventListener('click', function (e) {
+        layer.open({
+            content: '这是一个底部弹出的询问提示',
+            btn: ['删除', '取消'],
+            skin: 'footer',
+            yes: function (index) {
+                layer.open({content: '执行删除操作'})
+            },
+            no: function () {
+                console.log('取消');
+            }
+        });
+    });
+
+    //底部提示
+    list[4].addEventListener('click', function (e) {
+        layer.open({
+            content: '一个没有任何按钮的底部提示',
+            skin: 'footer'
+        });
+    });
+
+
+    //自定义标题风格
+    list[5].addEventListener('click', function (e) {
+        layer.open({
+            title: [
+                '我是标题',
+                'background-color: #FF4351; color:#fff;'
+            ],
+            content: '标题风格任你定义。'
+        });
+    });
+
+    //页面层
+    list[6].addEventListener('click', function (e) {
+        layer.open({
+            type: 1,
+            content: '可传入任何内容，支持html。一般用于手机页面中',
+            anim: 'up',
+            style: 'position:fixed; bottom:0; left:0; width: 100%; height: 200px; padding:10px 0; border:none;'
+        });
+    });
+
+    //loading层
+    list[7].addEventListener('click', function (e) {
+        layer.open({type: 2});
+    });
+
+    //loading带文字
+    list[8].addEventListener('click', function (e) {
+        layer.open({
+            type: 2,
+            content: '加载中'
+        });
+    });
+
+</script>
+</html>
